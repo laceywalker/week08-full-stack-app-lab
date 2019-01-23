@@ -8,6 +8,10 @@ const Bucketlist = function(url) {
 
 
 Bucketlist.prototype.bindEvents = function () {
+  PubSub.subscribe('BucketlistView:wish-delete-clicked', (evt) => {
+    this.deleteWish(evt.detail);
+  });
+  
   PubSub.subscribe('BucketlistFormView:New Wish Submit', (evt) => {
     this.postWish(evt.detail);
   })
@@ -27,7 +31,15 @@ Bucketlist.prototype.postWish = function (wishID) {
       PubSub.publish('BucketlistGridView:data-loaded', wishes);
     })
     .catch(console.error);
-}
+};
+
+Bucketlist.prototype.deleteWish = function (wishId) {
+  this.request.delete(wishId)
+    .then((wishes) => {
+      PubSub.publish('BucketlistGridView:data-loaded', wishes);
+    })
+    .catch(console.error);
+  };
 
 
 

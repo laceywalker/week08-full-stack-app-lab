@@ -12,6 +12,9 @@ BucketlistView.prototype.render = function (enteredWish) {
   const newWish = this.createDetail(enteredWish.wish);
   wishesContainer.appendChild(newWish);
 
+  const deleteButton = this.createDeleteButton(enteredWish._id);
+  wishesContainer.appendChild(deleteButton);
+
   this.container.appendChild(wishesContainer);
 };
 
@@ -21,6 +24,21 @@ BucketlistView.prototype.createDetail = function (text) {
   detail.textContent = text;
   return detail;
 };
+
+BucketlistView.prototype.createDeleteButton = function (wishId) {
+  const button = document.createElement('button');
+  button.classList.add('delete-btn');
+  button.value = wishId;
+
+  button.addEventListener('click', (evt) => {
+    PubSub.publish('BucketlistView:wish-delete-clicked', evt.target.value);
+  });
+
+  return button;
+};
+
+
+
 
 
 module.exports = BucketlistView;
