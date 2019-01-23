@@ -19,7 +19,7 @@ BucketlistFormView.prototype.handleSubmit = function (evt) {
 
 BucketlistFormView.prototype.createWish = function (container) {
   const newWish = {
-    wish: container.species.value
+    wish: container.wish.value
   }
   return newWish;
 };

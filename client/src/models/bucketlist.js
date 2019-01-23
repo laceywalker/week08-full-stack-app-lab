@@ -7,6 +7,12 @@ const Bucketlist = function(url) {
 };
 
 
+Bucketlist.prototype.bindEvents = function () {
+  PubSub.subscribe('BucketlistFormView:New Wish Submit', (evt) => {
+    this.postWish(evt.detail);
+  })
+};
+
 Bucketlist.prototype.getData = function () {
   this.request.get()
     .then((wishes) => {
@@ -14,6 +20,14 @@ Bucketlist.prototype.getData = function () {
     })
     .catch(console.error);
 };
+
+Bucketlist.prototype.postWish = function (wishID) {
+  this.request.post(wishID)
+    .then((wishes) => {
+      PubSub.publish('BucketlistGridView:data-loaded', wishes);
+    })
+    .catch(console.error);
+}
 
 
 
