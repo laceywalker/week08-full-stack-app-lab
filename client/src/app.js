@@ -8,9 +8,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const bucketlistFormView = new BucketlistFormView(bucketlistForm);
   bucketlistFormView.bindEvents();
 
+  const bucketlistContainer = document.querySelector('#bucketlist');
+  const bucketlistGridView = new BucketlistGridView(bucketlistContainer);
+  bucketlistGridView.bindEvents();
+
 
   const url = 'http://localhost:3000/api/bucketlist';
   const wishes = new Bucketlist(url);
+  // wishes.bindEvents();
   wishes.getData();
 
 });

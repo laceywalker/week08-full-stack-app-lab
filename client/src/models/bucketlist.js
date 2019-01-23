@@ -6,6 +6,7 @@ const Bucketlist = function(url) {
   this.request = new RequestHelper(this.url)
 };
 
+
 Bucketlist.prototype.getData = function () {
   this.request.get()
     .then((wishes) => {

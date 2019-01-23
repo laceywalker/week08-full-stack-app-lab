@@ -5,13 +5,14 @@ const BucketlistView = function(container) {
 }
 
 BucketlistView.prototype.render = function (enteredWish) {
+
   const wishesContainer = document.createElement('div');
-  wishesContainer.id = 'bucketlist';
+  wishesContainer.id = 'newwishes';
 
   const newWish = this.createDetail(enteredWish.wish);
   wishesContainer.appendChild(newWish);
 
-  this.container.appendChild(wishContainer);
+  this.container.appendChild(wishesContainer);
 };
 
 
