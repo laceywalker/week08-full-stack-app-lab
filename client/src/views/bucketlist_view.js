@@ -15,13 +15,9 @@ BucketlistView.prototype.render = function (enteredWish) {
   const deleteButton = this.createDeleteButton(enteredWish._id);
   wishesContainer.appendChild(deleteButton);
 
-
-  const checkbox = document.createElement('input');
-  checkbox.type = "checkbox";
-  checkbox.name = "name";
-  checkbox.value = "value";
-  checkbox.id = "id";
+  const checkbox = this.createCheckBox(enteredWish._id);
   wishesContainer.appendChild(checkbox);
+
 
   const label = document.createElement('label')
   label.htmlFor = "id";
@@ -34,6 +30,22 @@ BucketlistView.prototype.render = function (enteredWish) {
 
 
 };
+
+BucketlistView.prototype.createCheckBox = function () {
+  const checkbox = document.createElement('input');
+  checkbox.type = "checkbox";
+  checkbox.name = "name";
+  checkbox.value = "value";
+  checkbox.id = "id";
+
+  checkbox.addEventListener('check', (evt) => {
+  });
+
+  return checkbox;
+};
+
+
+
 
 
 // BucketlistView.prototype.createDetail = function (text) {
@@ -53,6 +65,8 @@ BucketlistView.prototype.createDeleteButton = function (wishId) {
 
   return button;
 };
+
+
 
 
 
